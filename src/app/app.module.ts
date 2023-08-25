@@ -8,6 +8,15 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './layouts/header/header.component';
 import { FooterComponent } from './layouts/footer/footer.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { FormsModule } from '@angular/forms';
+
+// import { AngularFireModule } from '@angular/fire/compat'=> Telling Angular app that we are about to use firebase
+
+//  AngularFireModule.initializeApp(environment.firebaseConfig) => Connected firebase to our app
+
+// import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
+//  AngularFirestoreModule, => Telling Angular app that we are about to use Firestore, inside we can use AngularFirestore service as a dependency injector
 
 @NgModule({
   declarations: [
@@ -15,12 +24,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HeaderComponent,
     FooterComponent,
     DashboardComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
