@@ -11,19 +11,21 @@ import { map } from 'rxjs/operators';
 export class CategoriesService {
   constructor(private afs: AngularFirestore, private toastr: ToastrService) {}
 
+  // POST OR CREATE
   saveData(data: any) {
     this.afs
       .collection('categories')
       .add(data)
       .then((docRef) => {
+        console.log(docRef);
         this.toastr.success('Data Inserted Successfully..!');
       })
-
       .catch((err) => {
         console.log(err);
       });
   }
 
+  // GET OR READ
   loadData() {
     return this.afs
       .collection('categories')
@@ -37,6 +39,25 @@ export class CategoriesService {
           });
         })
       );
+  }
+
+  // PUT/PATCH OR UPDATE
+  updateData(id: any, EditData: any) {
+    this.afs
+      .doc(`categories/${id}`)
+      .update(EditData)
+      .then((docRef) => {
+        this.toastr.success('Data Edited Successfully..!');
+      });
+  }
+
+  deleteData(id: any) {
+    this.afs
+      .doc(`categories/${id}`)
+      .delete()
+      .then((docRef) => {
+        this.toastr.success('Data Deleted..!');
+      });
   }
 }
 
